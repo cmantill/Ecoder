@@ -3,6 +3,8 @@ import tensorflow.keras.optimizers as opt
 
 from telescope import telescopeMSE443,telescopeMSE663,telescopeMSE8x8
 
+from emdloss import get_emd_loss
+
 edim = 16
 
 """
@@ -178,6 +180,18 @@ networks_by_name = [
          'CNN_strides':[(2,2)],
         },
     },
+    #Model files for emd_loss are saved at /emd_best/1.h5, PASS MODEL_NUMBER as an argument, eg: get_emd_loss(1)
+    {'name':'8x8_c8_S2_emdCNN',
+     'label':'8x8_c[8]_S2(emdCNN)',
+     'arr_key':'8x8',
+     'params':{
+         'shape':(8,8,1),
+         'loss':get_emd_loss(1),
+         'CNN_layer_nodes':[8],
+         'CNN_kernel_size':[3],
+         'CNN_strides':[(2,2)],
+        },
+    }
 ]
 
 defaults = {'channels_first': False,

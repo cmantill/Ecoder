@@ -260,7 +260,7 @@ def split(shaped_data, validation_frac=0.2,randomize=False):
 def train(autoencoder,encoder,train_input,train_target,val_input,name,n_epochs=100, train_weights=None):
     from tensorflow.keras import callbacks
     from tensorflow import keras as kr
-    es = callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=3)
+    es = callbacks.EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=20)
 
     if train_weights != None:
         history = autoencoder.fit(train_input,train_target,sample_weight=train_weights,epochs=n_epochs,batch_size=500,shuffle=True,validation_data=(val_input,val_input),callbacks=[es])
